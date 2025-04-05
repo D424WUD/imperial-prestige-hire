@@ -1,0 +1,3729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imperial Prestige Hire - Luxury Car Rental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0a0a0a;
+            --secondary-color: #c4a77d;
+            --accent-color-1: #ff6b6b;
+            --accent-color-2: #4ecdc4;
+            --accent-color-3: #45b7d1;
+            --text-color: #ffffff;
+            --text-secondary: #b3b3b3;
+            --card-bg: #141414;
+            --hover-color: #1a1a1a;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-1: linear-gradient(135deg, rgba(196, 167, 125, 0.1), rgba(255, 107, 107, 0.1));
+            --gradient-2: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(69, 183, 209, 0.1));
+            --border-color: #333;
+        }
+
+        /* Light theme variables */
+        body.light-theme {
+            --primary-color: #ffffff;
+            --secondary-color: #c4a77d;
+            --accent-color-1: #ff6b6b;
+            --accent-color-2: #4ecdc4;
+            --accent-color-3: #45b7d1;
+            --text-color: #121212;
+            --text-secondary: #666666;
+            --card-bg: #f5f5f5;
+            --hover-color: #e0e0e0;
+        }
+
+        body.light-theme header {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        body.light-theme header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        body.light-theme .car-card,
+        body.light-theme .about-card,
+        body.light-theme .review-card,
+        body.light-theme .contact-card,
+        body.light-theme .booking-form-container,
+        body.light-theme .contact-form,
+        body.light-theme .review-form,
+        body.light-theme .rating-card,
+        body.light-theme .booking-options,
+        body.light-theme .option-item,
+        body.light-theme .booking-confirmation,
+        body.light-theme .review-confirmation {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-theme input,
+        body.light-theme select,
+        body.light-theme textarea {
+            background: var(--hover-color);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
+        }
+
+        body.light-theme .theme-toggle {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        body.light-theme .theme-toggle:hover {
+            background: #b3946a;
+        }
+
+        body.light-theme footer {
+            background: var(--card-bg);
+        }
+
+        body.light-theme .social-links a {
+            color: var(--text-secondary);
+        }
+
+        body.light-theme .social-links a:hover {
+            color: var(--accent-color-3);
+        }
+
+        body.light-theme .car-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color-1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            z-index: 3;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        body.light-theme .car-card:nth-child(2) .car-badge {
+            background: var(--accent-color-2);
+        }
+
+        body.light-theme .car-card:nth-child(3) .car-badge {
+            background: var(--accent-color-3);
+        }
+
+        body.light-theme .car-price {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-theme .review-actions button {
+            color: var(--text-secondary);
+        }
+
+        body.light-theme .review-actions button:hover {
+            color: var(--accent-color-1);
+        }
+
+        body.light-theme .terms {
+            color: var(--text-secondary);
+        }
+
+        body.light-theme .terms a {
+            color: var(--accent-color-2);
+        }
+
+        body.light-theme .terms a:hover {
+            color: var(--accent-color-3);
+        }
+
+        body.light-theme .overlay {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(196, 167, 125, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 20%);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--accent-color-2);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+            background: var(--accent-color-3);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 0.7rem 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            gap: 1rem;
+        }
+
+        /* Logo Styles */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 160px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-text h1 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+            white-space: nowrap;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-text span {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--secondary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            transform: rotate(-10deg);
+            box-shadow: 0 2px 10px rgba(196, 167, 125, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .logo-text span {
+                display: none;
+            }
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            margin: 0 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 0.8rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.7rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+            min-width: 160px;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn-primary {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .nav-btn-primary:hover {
+            background: var(--accent-color-1);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .nav-btn-secondary:hover {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .header-container {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                gap: 0.6rem;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                position: fixed;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 1.5rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            nav.active {
+                transform: translateX(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.2rem;
+                align-items: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .logo h1 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 0.5rem;
+            }
+
+            .logo {
+                min-width: auto;
+            }
+
+            .logo h1 {
+                display: none;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        section {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            text-align: left;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        #home {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            padding-left: 10%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        #home h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 0 3rem;
+            color: var(--text-secondary);
+            animation: fadeInUp 1s ease 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            line-height: 1.8;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .car-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0;
+            width: 100%;
+        }
+
+        .car-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-1);
+        }
+
+        .car-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: var(--secondary-color);
+        }
+
+        .car-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: var(--card-bg);
+        }
+
+        .car-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            position: relative;
+        }
+
+        .car-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            pointer-events: none;
+            transform: scale(1.05);
+        }
+
+        .car-card:hover .car-video {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .car-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color-1);
+            color: var(--primary-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .car-card:hover .car-badge {
+            transform: translateY(-5px);
+        }
+
+        .car-info {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, var(--card-bg), var(--hover-color));
+        }
+
+        .car-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .car-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .car-features span {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            transition: var(--transition);
+        }
+
+        .car-features span:hover {
+            background: rgba(255,255,255,0.05);
+            transform: translateX(5px);
+        }
+
+        .car-features i {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .car-features span:hover i {
+            color: var(--accent-color-1);
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            background: var(--accent-color-1);
+            color: var(--primary-color);
+            padding: 1.2rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: var(--transition);
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .book-now-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .book-now-btn:hover::before {
+            left: 100%;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            border-color: var(--accent-color-1);
+            background: transparent;
+            color: var(--accent-color-1);
+        }
+
+        #booking {
+            background: var(--card-bg);
+            border-radius: 30px;
+            margin: 4rem auto;
+            padding: 4rem;
+        }
+
+        form {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-2);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--hover-color);
+            border: 2px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color-2);
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.1);
+            transform: translateY(-2px);
+        }
+
+        button[type="submit"] {
+            background: var(--accent-color-2);
+            color: var(--primary-color);
+            padding: 1.4rem 2.5rem;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+            background: var(--accent-color-3);
+        }
+
+        #contact {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: left;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color-3);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            #home h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* About Section Styles */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: left;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .about-card i {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Reviews Section Styles */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: left;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-1);
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-header img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(196, 167, 125, 0.3);
+            transition: var(--transition);
+        }
+
+        .review-card:hover .review-header img {
+            transform: scale(1.1);
+            border-color: var(--accent-color-1);
+        }
+
+        .review-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+        }
+
+        .rating {
+            color: var(--accent-color-2);
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .review-date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-content {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .review-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .review-actions button:hover {
+            color: var(--accent-color-1);
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .review-form {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            margin-top: 4rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-2);
+        }
+
+        .review-form h3 {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        .rating-input {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+        }
+
+        .rating-input i {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .rating-input i:hover,
+        .rating-input i.active {
+            color: #ffd700;
+        }
+
+        /* Add styles for section backgrounds */
+        #about {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #reviews {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Add styles for improved cards */
+        .car-card, .about-card, .review-card, .contact-card {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Add styles for improved navigation */
+        nav ul li a.active {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Contact Section Styles */
+        .contact-container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 2rem;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .contact-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .info-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .info-item p {
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--hover-color);
+            border: 1px solid var(--text-secondary);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(196, 167, 125, 0.1);
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background: #b3946a;
+            transform: translateY(-2px);
+        }
+
+        .map-section {
+            margin-top: 4rem;
+        }
+
+        .map-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* About Section Styles */
+        .about-container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 2rem;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-header p {
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-card i {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Reviews Section Styles */
+        .reviews-container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 2rem;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .reviews-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .reviews-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rating-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .rating-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .rating-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .rating-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .rating-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-card .rating {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .rating-card .stars {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.25rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+        }
+
+        .review-info .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .review-rating {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .review-content {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .review-car {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .review-actions button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .review-actions button:hover {
+            color: var(--secondary-color);
+        }
+
+        .review-actions i {
+            font-size: 1.1rem;
+        }
+
+        .review-form {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 30px;
+            margin-top: 4rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-image: var(--gradient-2);
+        }
+
+        .review-form h3 {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+
+        /* Booking Section Styles */
+        .booking-container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 2rem;
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .booking-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .booking-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .booking-form-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .booking-options {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--hover-color);
+            border-radius: 10px;
+        }
+
+        .booking-options h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--card-bg);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-item:hover {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .option-item input[type="checkbox"] {
+            width: auto;
+        }
+
+        .terms {
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .terms a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section IDs for Navigation */
+        #home, #about, #reviews, #contact, #booking {
+            scroll-margin-top: 100px;
+        }
+
+        /* Ensure background images are visible */
+        #home, #about, #reviews {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before, #about::before, #reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Add styles for improved cards */
+        .car-card, .about-card, .review-card, .contact-card {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Fleet Section Styles */
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .fleet-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .fleet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .fleet-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .fleet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .fleet-card:hover .fleet-image img {
+            transform: scale(1.1);
+        }
+
+        .fleet-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+
+        .fleet-info {
+            padding: 1.5rem;
+        }
+
+        .fleet-info h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        .fleet-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-group {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .spec-group h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .spec-group ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .spec-group li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .spec-group i {
+            color: var(--accent-color);
+        }
+
+        .fleet-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            background: var(--accent-dark);
+        }
+
+        /* Services Section Styles */
+        #services {
+            padding: 8rem 5%;
+            background: var(--primary-color);
+            position: relative;
+        }
+
+        #services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        #services h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        #services .section-description {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(196, 167, 125, 0.3);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: var(--accent-color-1);
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .service-features li:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .service-features i {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .service-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+        }
+
+        .service-btn:hover {
+            background: transparent;
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Special Offers Section Styles */
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .offer-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color-1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .offer-content {
+            margin-top: 1rem;
+        }
+
+        .offer-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .offer-features li i {
+            color: var(--accent-color-2);
+        }
+
+        .offer-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .discounted-price {
+            color: var(--accent-color-1);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .discount {
+            background: var(--accent-color-1);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        /* FAQ Section Styles */
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .faq-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .faq-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+
+        .faq-category:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+
+        .faq-category.active {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+
+        .faq-category-content {
+            display: none;
+        }
+
+        .faq-category-content.active {
+            display: block;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+            background: var(--card-bg);
+        }
+
+        .faq-answer p {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .faq-categories {
+                flex-direction: column;
+            }
+
+            .faq-category {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Terms & Privacy Section Styles */
+        .terms-container,
+        .privacy-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .terms-section,
+        .privacy-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .terms-section h3,
+        .privacy-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .terms-section p,
+        .privacy-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Add styles for improved navigation */
+        nav ul li a.active {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Locations Section Styles */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .location-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .location-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .location-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .location-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .location-card:hover .location-image img {
+            transform: scale(1.1);
+        }
+
+        .location-info {
+            padding: 2rem;
+        }
+
+        .location-address {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+        }
+
+        .location-details {
+            margin: 1.5rem 0;
+        }
+
+        .location-details p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .location-details i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+
+        .location-btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .location-btn:hover {
+            background: var(--accent-color-1);
+            transform: translateY(-3px);
+        }
+
+        /* Blog Section Styles */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        .blog-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .blog-btn:hover {
+            background: var(--accent-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .section-description {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Section Styles */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature i {
+            color: var(--accent-color);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .chat-toggle {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 5px;
+        }
+
+        .message.user {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.system {
+            background: var(--border-color);
+            color: var(--text-color);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .chat-input button {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">IP</div>
+                <div class="logo-text">
+                    <h1>Imperial Prestige</h1>
+                    <span>Luxury Car Hire</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#fleet">Fleet</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#special-offers">Special Offers</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#locations">Locations</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="nav-buttons">
+                <a href="#contact" class="nav-btn nav-btn-secondary">Contact</a>
+                <a href="#booking" class="nav-btn nav-btn-primary">Book</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    
+    <section id="home">
+        <h2>Experience Luxury Like Never Before</h2>
+        <p>Discover our exclusive collection of premium vehicles for your special moments.</p>
+        <a href="#fleet" class="cta-btn">Explore Fleet</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Premium Services</h2>
+        <p class="section-description">Experience luxury car rental redefined with our comprehensive range of premium services tailored to exceed your expectations.</p>
+        
+        <div class="services-grid">
+            <!-- Luxury Car Rental -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-car-side"></i>
+                </div>
+                <h3>Luxury Car Rental</h3>
+                <p>Access our exclusive fleet of premium vehicles for any occasion, from business meetings to special events.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Wide range of luxury vehicles</li>
+                    <li><i class="fas fa-check"></i> Latest models available</li>
+                    <li><i class="fas fa-check"></i> Flexible rental periods</li>
+                    <li><i class="fas fa-check"></i> Competitive pricing</li>
+                </ul>
+                <a href="#fleet" class="service-btn">View Fleet</a>
+            </div>
+
+            <!-- Chauffeur Service -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Professional Chauffeur</h3>
+                <p>Travel in style with our professional chauffeur service, perfect for corporate events and special occasions.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Experienced drivers</li>
+                    <li><i class="fas fa-check"></i> 24/7 availability</li>
+                    <li><i class="fas fa-check"></i> Corporate packages</li>
+                    <li><i class="fas fa-check"></i> Airport transfers</li>
+                </ul>
+                <a href="#booking" class="service-btn">Book Now</a>
+            </div>
+
+            <!-- Wedding Service -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <h3>Wedding Services</h3>
+                <p>Make your special day even more memorable with our luxury wedding car service and customized packages.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Decorated vehicles</li>
+                    <li><i class="fas fa-check"></i> Photography included</li>
+                    <li><i class="fas fa-check"></i> Custom packages</li>
+                    <li><i class="fas fa-check"></i> Professional service</li>
+                </ul>
+                <a href="#contact" class="service-btn">Enquire Now</a>
+            </div>
+
+            <!-- Corporate Service -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Corporate Solutions</h3>
+                <p>Tailored corporate packages for businesses, including long-term rentals and executive transportation.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Corporate accounts</li>
+                    <li><i class="fas fa-check"></i> Priority booking</li>
+                    <li><i class="fas fa-check"></i> Flexible terms</li>
+                    <li><i class="fas fa-check"></i> Dedicated support</li>
+                </ul>
+                <a href="#contact" class="service-btn">Contact Us</a>
+            </div>
+
+            <!-- VIP Experience -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h3>VIP Experience</h3>
+                <p>Exclusive VIP services including personalized concierge, luxury amenities, and priority treatment.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Personal concierge</li>
+                    <li><i class="fas fa-check"></i> Premium amenities</li>
+                    <li><i class="fas fa-check"></i> Priority service</li>
+                    <li><i class="fas fa-check"></i> Custom requests</li>
+                </ul>
+                <a href="#contact" class="service-btn">Learn More</a>
+            </div>
+
+            <!-- Special Events -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-glass-cheers"></i>
+                </div>
+                <h3>Special Events</h3>
+                <p>Make any occasion extraordinary with our special event services, from proms to anniversaries.</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> Event planning</li>
+                    <li><i class="fas fa-check"></i> Custom decoration</li>
+                    <li><i class="fas fa-check"></i> Multiple vehicles</li>
+                    <li><i class="fas fa-check"></i> Special packages</li>
+                </ul>
+                <a href="#booking" class="service-btn">Book Event</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <h2>Latest News & Updates</h2>
+        <p class="section-description">Stay informed about our latest offerings and industry insights</p>
+        
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888" alt="New Fleet Addition">
+                    <span class="blog-date">March 15, 2024</span>
+                </div>
+                <div class="blog-content">
+                    <h3>New Luxury Fleet Addition</h3>
+                    <p>We're excited to announce the addition of the latest Mercedes-Benz S-Class to our premium fleet...</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-user"></i> Admin</span>
+                        <span><i class="fas fa-comments"></i> 5 Comments</span>
+                    </div>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="Summer Special">
+                    <span class="blog-date">March 10, 2024</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Summer Special Offers</h3>
+                    <p>Get ready for summer with our exclusive seasonal packages and special discounts...</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-user"></i> Admin</span>
+                        <span><i class="fas fa-comments"></i> 3 Comments</span>
+                    </div>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e" alt="Corporate Services">
+                    <span class="blog-date">March 5, 2024</span>
+                </div>
+                <div class="blog-content">
+                    <h3>Enhanced Corporate Services</h3>
+                    <p>We've expanded our corporate services to better serve our business clients...</p>
+                    <div class="blog-meta">
+                        <span><i class="fas fa-user"></i> Admin</span>
+                        <span><i class="fas fa-comments"></i> 7 Comments</span>
+                    </div>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <p class="section-description">Have questions? We're here to help. Contact us through any of the following channels.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>Call us at +44 20 1234 5678 for immediate assistance.</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>Send us an email at info@imperialprestige.com</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Visit Us</h3>
+                <p>123 Mayfair, London W1K 7TN</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h3>Send us a Message</h3>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking">
+        <h2>Book Your Luxury Vehicle</h2>
+        <p class="section-description">Choose your preferred vehicle and complete the booking process</p>
+        
+        <div class="booking-form-container">
+            <form id="booking-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="pickup-date">Pickup Date</label>
+                        <input type="date" id="pickup-date" name="pickup-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="return-date">Return Date</label>
+                        <input type="date" id="return-date" name="return-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup-location">Pickup Location</label>
+                        <select id="pickup-location" name="pickup-location" required>
+                            <option value="">Select Location</option>
+                            <option value="london">London City</option>
+                            <option value="manchester">Manchester</option>
+                            <option value="birmingham">Birmingham</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-type">Vehicle Type</label>
+                        <select id="vehicle-type" name="vehicle-type" required>
+                            <option value="">Select Vehicle</option>
+                            <option value="mercedes">Mercedes-Benz S-Class</option>
+                            <option value="bmw">BMW 7 Series</option>
+                            <option value="audi">Audi A8</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="booking-options">
+                    <h3>Additional Services</h3>
+                    <div class="options-grid">
+                        <label class="option-item">
+                            <input type="checkbox" name="chauffeur">
+                            <span>Professional Chauffeur</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="insurance">
+                            <span>Additional Insurance</span>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="delivery">
+                            <span>Vehicle Delivery</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="special-requests">Special Requests</label>
+                    <textarea id="special-requests" name="special-requests"></textarea>
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#terms">Terms & Conditions</a></label>
+                </div>
+
+                <button type="submit">Complete Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section id="fleet">
+        <h2>Our Luxury Fleet</h2>
+        <div class="fleet-grid">
+            <div class="fleet-card">
+                <div class="fleet-image">
+                    <img src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mercedes-Benz S-Class">
+                </div>
+                <div class="fleet-info">
+                    <h3>Mercedes-Benz S-Class</h3>
+                    <div class="fleet-specs">
+                        <div class="spec-group">
+                            <h4>Performance</h4>
+                            <ul>
+                                <li><i class="fas fa-horse"></i> 429 HP</li>
+                                <li><i class="fas fa-tachometer-alt"></i> 0-60mph: 4.8s</li>
+                                <li><i class="fas fa-gas-pump"></i> Hybrid</li>
+                                <li><i class="fas fa-cog"></i> 9G-TRONIC</li>
+                            </ul>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Comfort</h4>
+                            <ul>
+                                <li><i class="fas fa-car"></i> 4 Seats</li>
+                                <li><i class="fas fa-snowflake"></i> Climate Control</li>
+                                <li><i class="fas fa-volume-up"></i> Premium Sound</li>
+                                <li><i class="fas fa-chair"></i> Massage Seats</li>
+                            </ul>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Safety</h4>
+                            <ul>
+                                <li><i class="fas fa-shield-alt"></i> Active Safety</li>
+                                <li><i class="fas fa-car-crash"></i> Collision Prevention</li>
+                                <li><i class="fas fa-eye"></i> Night Vision</li>
+                                <li><i class="fas fa-parking"></i> Auto Parking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fleet-pricing">
+                        <p class="price">Starting from £500/day</p>
+                        <a href="#booking" class="book-now-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="fleet-card">
+                <div class="fleet-image">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="BMW 7 Series">
+                </div>
+                <div class="fleet-info">
+                    <h3>BMW 7 Series</h3>
+                    <div class="fleet-specs">
+                        <div class="spec-group">
+                            <h4>Performance</h4>
+                            <ul>
+                                <li><i class="fas fa-horse"></i> 523 HP</li>
+                                <li><i class="fas fa-tachometer-alt"></i> 0-60mph: 4.5s</li>
+                                <li><i class="fas fa-gas-pump"></i> Petrol</li>
+                                <li><i class="fas fa-cog"></i> 8-Speed Auto</li>
+                            </ul>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Comfort</h4>
+                            <ul>
+                                <li><i class="fas fa-car"></i> 5 Seats</li>
+                                <li><i class="fas fa-snowflake"></i> 4-Zone Climate</li>
+                                <li><i class="fas fa-volume-up"></i> Bowers & Wilkins</li>
+                                <li><i class="fas fa-chair"></i> Executive Lounge</li>
+                            </ul>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Technology</h4>
+                            <ul>
+                                <li><i class="fas fa-mobile-alt"></i> BMW Live Cockpit</li>
+                                <li><i class="fas fa-parking"></i> Remote Parking</li>
+                                <li><i class="fas fa-shield-alt"></i> Driving Assistant</li>
+                                <li><i class="fas fa-wifi"></i> 5G Connectivity</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fleet-pricing">
+                        <p class="price">Starting from £450/day</p>
+                        <a href="#booking" class="book-now-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="fleet-card">
+                <div class="fleet-image">
+                    <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Audi A8">
+                </div>
+                <div class="fleet-info">
+                    <h3>Audi A8</h3>
+                    <div class="fleet-specs">
+                        <div class="spec-group">
+                            <h4>Performance</h4>
+                            <ul>
+                                <li><i class="fas fa-horse"></i> 335 HP</li>
+                                <li><i class="fas fa-tachometer-alt"></i> 0-60mph: 4.9s</li>
+                                <li><i class="fas fa-gas-pump"></i> Diesel</li>
+                                <li><i class="fas fa-cog"></i> 8-Speed Tiptronic</li>
+                            </ul>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Comfort</h4>
+                            <ul>
+                                <li><i class="fas fa-car"></i> 5 Seats</li>
+                                <li><i class="fas fa-snowflake"></i> 4-Zone Climate</li>
+                                <li><i class="fas fa-volume-up"></i> Bang & Olufsen</li>
+                                <li><i class="fas fa-chair"></i> Comfort Seats</li>
+                            </ul>
+                        </div>
+                        <div class="spec-group">
+                            <h4>Technology</h4>
+                            <ul>
+                                <li><i class="fas fa-mobile-alt"></i> Virtual Cockpit</li>
+                                <li><i class="fas fa-parking"></i> Park Assist</li>
+                                <li><i class="fas fa-shield-alt"></i> Pre Sense</li>
+                                <li><i class="fas fa-wifi"></i> MMI Navigation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fleet-pricing">
+                        <p class="price">Starting from £400/day</p>
+                        <a href="#booking" class="book-now-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="special-offers">
+        <h2>Special Offers</h2>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-badge">Limited Time</div>
+                <h3>Summer Special</h3>
+                <div class="offer-content">
+                    <p class="offer-description">Book any luxury vehicle for 7 days or more and get 15% off your total rental.</p>
+                    <ul class="offer-features">
+                        <li><i class="fas fa-check"></i> Valid until August 31, 2024</li>
+                        <li><i class="fas fa-check"></i> Applies to all vehicles</li>
+                        <li><i class="fas fa-check"></i> No hidden charges</li>
+                    </ul>
+                    <div class="offer-price">
+                        <span class="original-price">£500/day</span>
+                        <span class="discounted-price">£425/day</span>
+                        <span class="discount">15% OFF</span>
+                    </div>
+                    <a href="#booking" class="book-now-btn">Book Now</a>
+                </div>
+            </div>
+            <div class="offer-card">
+                <div class="offer-badge">New</div>
+                <h3>Weekend Package</h3>
+                <div class="offer-content">
+                    <p class="offer-description">Special weekend rates for Friday to Sunday bookings.</p>
+                    <ul class="offer-features">
+                        <li><i class="fas fa-check"></i> 3-day minimum booking</li>
+                        <li><i class="fas fa-check"></i> Includes insurance</li>
+                        <li><i class="fas fa-check"></i> Free delivery</li>
+                    </ul>
+                    <div class="offer-price">
+                        <span class="original-price">£600/day</span>
+                        <span class="discounted-price">£450/day</span>
+                        <span class="discount">25% OFF</span>
+                    </div>
+                    <a href="#booking" class="book-now-btn">Book Now</a>
+                </div>
+            </div>
+            <div class="offer-card">
+                <div class="offer-badge">Exclusive</div>
+                <h3>Corporate Package</h3>
+                <div class="offer-content">
+                    <p class="offer-description">Special rates for corporate clients with multiple bookings.</p>
+                    <ul class="offer-features">
+                        <li><i class="fas fa-check"></i> 20% off all bookings</li>
+                        <li><i class="fas fa-check"></i> Priority service</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Monthly billing</li>
+                        <li><i class="fas fa-check"></i> Custom fleet options</li>
+                    </ul>
+                    <div class="offer-price">
+                        <span class="original-price">£800/day</span>
+                        <span class="discounted-price">£640/day</span>
+                        <span class="discount">20% OFF</span>
+                    </div>
+                    <a href="#booking" class="book-now-btn">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Imperial Prestige Hire</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-history"></i>
+                <h3>Our History</h3>
+                <p>Founded in 2010, Imperial Prestige Hire has been at the forefront of luxury car rentals in London. We've grown from a small fleet of premium vehicles to one of the most respected names in the industry.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Our Mission</h3>
+                <p>To provide an unparalleled luxury car hire experience, combining exceptional service with the finest vehicles in the industry.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-eye"></i>
+                <h3>Our Vision</h3>
+                <p>To be the leading luxury car hire service in Europe, known for our commitment to excellence and customer satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="locations" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Locations</h2>
+            <p class="section-description">Visit us at our premium locations across the UK</p>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad" alt="London City">
+                    </div>
+                    <div class="location-info">
+                        <h3>London City</h3>
+                        <p class="location-address">123 Mayfair, London W1K 7TN</p>
+                        <div class="location-details">
+                            <p><i class="fas fa-phone"></i> +44 20 1234 5678</p>
+                            <p><i class="fas fa-envelope"></i> london@imperialprestige.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sun: 8:00 - 20:00</p>
+                        </div>
+                        <a href="#contact" class="location-btn">Contact Location</a>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1599661046281-0d1703c0d5f8" alt="Manchester">
+                    </div>
+                    <div class="location-info">
+                        <h3>Manchester</h3>
+                        <p class="location-address">45 Spinningfields, Manchester M3 3LZ</p>
+                        <div class="location-details">
+                            <p><i class="fas fa-phone"></i> +44 161 123 4567</p>
+                            <p><i class="fas fa-envelope"></i> manchester@imperialprestige.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sun: 8:00 - 20:00</p>
+                        </div>
+                        <a href="#contact" class="location-btn">Contact Location</a>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Birmingham">
+                    </div>
+                    <div class="location-info">
+                        <h3>Birmingham</h3>
+                        <p class="location-address">78 Colmore Row, Birmingham B3 2QD</p>
+                        <div class="location-details">
+                            <p><i class="fas fa-phone"></i> +44 121 234 5678</p>
+                            <p><i class="fas fa-envelope"></i> birmingham@imperialprestige.com</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sun: 8:00 - 20:00</p>
+                        </div>
+                        <a href="#contact" class="location-btn">Contact Location</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2>What Our Clients Say</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe">
+                    <div class="review-info">
+                        <h3>John Doe</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-date">March 15, 2024</p>
+                <p class="review-content">"Exceptional service from start to finish. The Mercedes-Benz S-Class was immaculate, and the staff went above and beyond to ensure our comfort."</p>
+                <div class="review-actions">
+                    <button class="helpful-btn"><i class="fas fa-thumbs-up"></i> Helpful</button>
+                    <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Jane Smith">
+                    <div class="review-info">
+                        <h3>Jane Smith</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-date">March 10, 2024</p>
+                <p class="review-content">"The BMW 7 Series exceeded all expectations. The booking process was smooth, and the car was delivered right on time."</p>
+                <div class="review-actions">
+                    <button class="helpful-btn"><i class="fas fa-thumbs-up"></i> Helpful</button>
+                    <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Michael Brown">
+                    <div class="review-info">
+                        <h3>Michael Brown</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-date">March 5, 2024</p>
+                <p class="review-content">"The Lamborghini Huracan was a dream come true. The team's attention to detail and professionalism is unmatched."</p>
+                <div class="review-actions">
+                    <button class="helpful-btn"><i class="fas fa-thumbs-up"></i> Helpful</button>
+                    <button class="reply-btn"><i class="fas fa-reply"></i> Reply</button>
+                </div>
+            </div>
+        </div>
+        <div class="review-form">
+            <h3>Share Your Experience</h3>
+            <form id="review-form">
+                <div class="form-group">
+                    <label for="review-name">Your Name</label>
+                    <input type="text" id="review-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="review-email">Email Address</label>
+                    <input type="email" id="review-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="review-car">Vehicle Hired</label>
+                    <select id="review-car" name="car" required>
+                        <option value="">Select a vehicle</option>
+                        <option value="mercedes">Mercedes-Benz S-Class</option>
+                        <option value="bmw">BMW 7 Series</option>
+                        <option value="audi">Audi A8</option>
+                        <option value="porsche">Porsche 911</option>
+                        <option value="lamborghini">Lamborghini Huracan</option>
+                        <option value="ferrari">Ferrari F8</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review-rating">Rating</label>
+                    <div class="rating-input">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="review-content">Your Review</label>
+                    <textarea id="review-content" name="review" required></textarea>
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-categories">
+                <button class="faq-category active" data-category="general">General</button>
+                <button class="faq-category" data-category="booking">Booking</button>
+                <button class="faq-category" data-category="payment">Payment</button>
+                <button class="faq-category" data-category="insurance">Insurance</button>
+            </div>
+            <div class="faq-content">
+                <div class="faq-category-content active" id="general">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What documents do I need to rent a car?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You'll need a valid driver's license, proof of insurance, and a credit card for the security deposit. International drivers must also provide an International Driving Permit.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is your cancellation policy?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a flexible cancellation policy. Cancellations made 48 hours before pickup are fully refundable. Late cancellations may incur a fee.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is your age requirement?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Drivers must be at least 25 years old to rent our vehicles. For certain luxury models, the minimum age requirement may be higher.</p>
+                            <ul>
+                                <li>Standard vehicles: 25+ years</li>
+                                <li>Luxury vehicles: 30+ years</li>
+                                <li>Supercars: 35+ years</li>
+                                <li>Additional fees may apply for younger drivers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-category-content" id="booking">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I make a booking?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can make a booking through our website, mobile app, or by contacting our customer service team.</p>
+                            <ol>
+                                <li>Select your desired vehicle</li>
+                                <li>Choose pickup and return dates</li>
+                                <li>Fill in your personal details</li>
+                                <li>Select additional services</li>
+                                <li>Complete payment</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I modify my booking?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can modify your booking up to 24 hours before pickup. Changes may be subject to availability and additional charges.</p>
+                            <ul>
+                                <li>Date changes: Subject to availability</li>
+                                <li>Vehicle changes: May incur upgrade fees</li>
+                                <li>Location changes: May incur transfer fees</li>
+                                <li>Additional services can be added anytime</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-category-content" id="payment">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What payment methods do you accept?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit cards, debit cards, and bank transfers for corporate clients.</p>
+                            <ul>
+                                <li>Visa, Mastercard, American Express</li>
+                                <li>Major debit cards</li>
+                                <li>Bank transfers (corporate only)</li>
+                                <li>Digital wallets (Apple Pay, Google Pay)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is the security deposit?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A security deposit is required for all rentals and varies based on the vehicle type. It's fully refundable upon return if no damage is incurred.</p>
+                            <ul>
+                                <li>Standard vehicles: £1,000</li>
+                                <li>Luxury vehicles: £2,000</li>
+                                <li>Supercars: £5,000</li>
+                                <li>Refunded within 5-7 business days</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-category-content" id="insurance">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What insurance coverage is included?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>All rentals include comprehensive insurance coverage with a standard excess. Additional coverage options are available.</p>
+                            <ul>
+                                <li>Comprehensive coverage included</li>
+                                <li>Standard excess: £1,000</li>
+                                <li>24/7 roadside assistance</li>
+                                <li>Optional excess reduction available</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I use my own insurance?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can use your own insurance, but it must meet our minimum coverage requirements and be approved by our insurance team.</p>
+                            <ul>
+                                <li>Must be fully comprehensive</li>
+                                <li>Must cover rental vehicles</li>
+                                <li>Must meet minimum coverage limits</li>
+                                <li>Must be approved by our team</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="terms">
+        <h2>Terms & Conditions</h2>
+        <div class="terms-container">
+            <div class="terms-section">
+                <h3>1. Rental Agreement</h3>
+                <p>By renting a vehicle from Imperial Prestige Hire, you agree to our terms and conditions. The rental agreement is binding and includes all specified terms.</p>
+            </div>
+            <div class="terms-section">
+                <h3>2. Driver Requirements</h3>
+                <p>Drivers must be at least 25 years old, hold a valid driver's license for at least 2 years, and provide valid identification.</p>
+            </div>
+            <div class="terms-section">
+                <h3>3. Insurance Coverage</h3>
+                <p>All rentals include basic insurance coverage. Additional coverage options are available for purchase.</p>
+            </div>
+            <!-- Add more terms sections -->
+        </div>
+    </section>
+
+    <section id="privacy">
+        <h2>Privacy Policy</h2>
+        <div class="privacy-container">
+            <div class="privacy-section">
+                <h3>Information Collection</h3>
+                <p>We collect personal information including name, contact details, and payment information to process your rental.</p>
+            </div>
+            <div class="privacy-section">
+                <h3>Data Protection</h3>
+                <p>Your information is protected using industry-standard security measures and is never shared with third parties without consent.</p>
+            </div>
+            <div class="privacy-section">
+                <h3>Your Rights</h3>
+                <p>You have the right to access, correct, or delete your personal information at any time.</p>
+            </div>
+            <!-- Add more privacy sections -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Imperial Prestige Hire. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle" id="chat-toggle">
+            <i class="fas fa-comments"></i>
+            <span class="chat-badge">3</span>
+        </button>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <h3>Live Chat</h3>
+                <button class="close-chat" id="close-chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message system">
+                    <p>Welcome to Imperial Prestige Hire! How can we help you today?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('light-theme');
+                icon.classList.toggle('fa-sun');
+                icon.classList.toggle('fa-moon');
+            });
+
+            // Navigation
+            const header = document.querySelector('header');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            const navItems = document.querySelectorAll('nav ul li a');
+
+            // Mobile Menu Toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    nav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                }
+            });
+
+            // Scroll Effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Active Link on Scroll
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - sectionHeight/3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href').slice(1) === current) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // FAQ Section Functionality
+            const faqCategories = document.querySelectorAll('.faq-category');
+            const faqCategoryContents = document.querySelectorAll('.faq-category-content');
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            // Category switching
+            faqCategories.forEach(category => {
+                category.addEventListener('click', () => {
+                    // Remove active class from all categories
+                    faqCategories.forEach(cat => cat.classList.remove('active'));
+                    // Add active class to clicked category
+                    category.classList.add('active');
+
+                    // Hide all category contents
+                    faqCategoryContents.forEach(content => content.classList.remove('active'));
+                    // Show selected category content
+                    const selectedContent = document.getElementById(category.dataset.category);
+                    if (selectedContent) {
+                        selectedContent.classList.add('active');
+                    }
+                });
+            });
+
+            // Question toggling
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = question.querySelector('.fa-chevron-down');
+
+                question.addEventListener('click', () => {
+                    // Close all other answers
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current answer
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Form Submissions
+            const bookingForm = document.querySelector('#booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showConfirmation('Booking submitted successfully! We will contact you shortly.');
+                    this.reset();
+                });
+            }
+
+            const contactForm = document.querySelector('#contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showConfirmation('Message sent successfully! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+
+            // Confirmation Message
+            function showConfirmation(message) {
+                const confirmation = document.createElement('div');
+                confirmation.className = 'confirmation-message';
+                confirmation.innerHTML = `
+                    <div class="confirmation-content">
+                        <i class="fas fa-check-circle"></i>
+                        <p>${message}</p>
+                        <button onclick="this.parentElement.parentElement.remove()">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(confirmation);
+                setTimeout(() => confirmation.remove(), 5000);
+            }
+
+            // Blog Read More Buttons
+            document.querySelectorAll('.blog-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showConfirmation('Blog post details coming soon!');
+                });
+            });
+
+            // Chat Functionality
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatContainer = document.getElementById('chat-container');
+            const closeChat = document.getElementById('close-chat');
+            const chatInput = document.getElementById('chat-input');
+            const sendMessage = document.getElementById('send-message');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatBadge = document.querySelector('.chat-badge');
+
+            // Sample responses for the chat
+            const responses = [
+                "I'd be happy to help you with that!",
+                "Could you please provide more details?",
+                "Let me check that information for you.",
+                "Is there anything else you'd like to know?",
+                "Thank you for your message. We'll get back to you shortly.",
+                "Our team is here to assist you with any questions.",
+                "Would you like to make a booking?",
+                "I can help you with pricing information.",
+                "Let me connect you with our booking team.",
+                "Is there a specific vehicle you're interested in?"
+            ];
+
+            // Toggle chat window
+            chatToggle.addEventListener('click', function() {
+                chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
+                chatBadge.style.display = 'none';
+            });
+
+            // Close chat when clicking close button
+            closeChat.addEventListener('click', function() {
+                chatContainer.style.display = 'none';
+            });
+
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user' : 'system'}`;
+                messageDiv.innerHTML = `<p>${message}</p>`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function getRandomResponse() {
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+
+            function handleUserMessage(message) {
+                addMessage(message, true);
+                setTimeout(() => {
+                    addMessage(getRandomResponse());
+                }, 1000);
+            }
+
+            // Send message on button click
+            sendMessage.addEventListener('click', function() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    handleUserMessage(message);
+                    chatInput.value = '';
+                }
+            });
+
+            // Send message on Enter key
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const message = this.value.trim();
+                    if (message) {
+                        handleUserMessage(message);
+                        this.value = '';
+                    }
+                }
+            });
+
+            // Close chat when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!chatContainer.contains(e.target) && !chatToggle.contains(e.target)) {
+                    chatContainer.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
